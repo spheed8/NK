@@ -1,1 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Sana Özel ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    #counter {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: #ff69b4;
+      background: #fff;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+    button:hover {
+      transform: scale(1.1);
+      background: #ffe4e1;
+    }
+    #surprise {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.3em;
+      background: rgba(255,255,255,0.2);
+      padding: 15px;
+      border-radius: 15px;
+    }
+    /* Kalp animasyonu */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(-45deg);
+      animation: floatUp 5s linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) rotate(-45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-600px) rotate(-45deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Sana çokçokçokçok aşığım</h1>
+  <div id="counter"></div>
+  <button onclick="showSurprise()">Tıkla ve sürprizi gör</button>
+  <div id="surprise">Bu hediyeler senin için, seni çok seviyorum, hiç ayrılmayalım, sonsuza kadar benim prensesim olarak kal ❤️</div>
 
+  <script>
+    // Sayaç hesaplama
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - 47); // 47 gün öncesi
+    const counter = document.getElementById('counter');
+
+    function updateCounter() {
+      const now = new Date();
+      const diff = now - startDate;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      counter.textContent = `${days} gündür birlikteyiz ❤️`;
+    }
+    updateCounter();
+
+    // Sürpriz mesaj
+    function showSurprise() {
+      document.getElementById('surprise').style.display = 'block';
+      createHearts();
+    }
+
+    // Kalpler oluşturma
+    function createHearts() {
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.backgroundColor = '#ff0000';
+        heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }
+    }
+  </script>
+</body>
+</html>
